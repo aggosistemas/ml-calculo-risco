@@ -1,10 +1,12 @@
-# app/tests/test_integration_api.py
-
 from fastapi.testclient import TestClient
 from app.main import app
 
-# Cria o cliente de testes para a API
-client = TestClient(app)
+# Configuração alternativa do cliente
+try:
+    client = TestClient(app)
+except TypeError:
+    # Fallback para versões mais antigas
+    client = TestClient(app, base_url="http://testserver")
 
 def test_calcular_risco_integration_valido():
     payload = {
@@ -52,4 +54,3 @@ def test_calcular_risco_integration_invalido():
     response = client.post("/calcular-risco", json=payload)
     assert response.status_code == 422  # Falha de validação (Unprocessable Entity)
 
-    
