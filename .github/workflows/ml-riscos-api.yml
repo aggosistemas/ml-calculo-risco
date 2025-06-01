@@ -25,8 +25,7 @@ jobs:
       - name: Instalar dependências
         run: |
           pip install --upgrade pip
-          pip install starlette==0.36.3 fastapi==0.110.0
-          pip install -r requirements.txt
+          pip install -r requirements.txt -c constraints.txt
 
       - name: Rodar testes unitários e de integração
         run: |
