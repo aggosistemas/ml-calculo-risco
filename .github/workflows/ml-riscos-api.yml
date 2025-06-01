@@ -30,7 +30,7 @@ jobs:
       - name: Instalar dependências
         run: |
           pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements-ci.txt
 
       - name: Rodar testes unitários e de integração
         run: |
