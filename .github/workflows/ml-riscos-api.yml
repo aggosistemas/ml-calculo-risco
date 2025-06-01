@@ -83,6 +83,11 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
+      - name: Instalar plugin gke-gcloud-auth-plugin
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-cloud-sdk-gke-gcloud-auth-plugin
+
       - name: Configurar kubectl
         uses: google-github-actions/setup-gcloud@v2
         with:
@@ -96,5 +101,5 @@ jobs:
 
       - name: Aplicar deployment no GKE
         run: |
-          kubectl apply -f app/k8s/deployment.yaml --validate=false
-          kubectl apply -f app/k8s/service.yaml --validate=false
+          kubectl apply -f app/k8s/deployment.yaml
+          kubectl apply -f app/k8s/service.yaml
