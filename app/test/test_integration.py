@@ -6,7 +6,6 @@ from app.main import app
 # Cria o cliente de testes para a API
 client = TestClient(app)
 
-
 def test_calcular_risco_integration_valido():
     payload = {
         "idade": 30,
