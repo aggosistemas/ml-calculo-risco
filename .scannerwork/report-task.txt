@@ -1,0 +1,7 @@
+organization=aggosistemas
+projectKey=ml-calculo-risco
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.63940
+dashboardUrl=https://sonarcloud.io/dashboard?id=ml-calculo-risco
+ceTaskId=AZcszX9P3gRW9BUAf_bl
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZcszX9P3gRW9BUAf_bl
