@@ -1,4 +1,4 @@
-name: Pipeline Machine Learning - Calculo de Riscos
+name: Pipeline Machine Learning - Calculo de Riscos  
 
 on:
   push:
