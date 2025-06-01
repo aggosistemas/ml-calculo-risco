@@ -1,4 +1,4 @@
-name: Pipeline Machine Learning - Calculo de Riscos  
+name: Pipeline Machine Learning - Calculo de Riscos
 
 on:
   push:
@@ -21,8 +21,8 @@ jobs:
     
       - name: Instalar dependências
         run: |
-        pip install --upgrade pip
-        pip install -r requirements.txt
+          pip install --upgrade pip
+          pip install -r requirements.txt
     
       - name: Configurar Python
         uses: actions/setup-python@v5
