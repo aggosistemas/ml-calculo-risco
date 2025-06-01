@@ -51,3 +51,5 @@ def test_calcular_risco_integration_invalido():
 
     response = client.post("/calcular-risco", json=payload)
     assert response.status_code == 422  # Falha de validação (Unprocessable Entity)
+
+    
