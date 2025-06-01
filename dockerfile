@@ -1,5 +1,5 @@
 # Usa imagem leve do Python
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 # Define diretório de trabalho
 WORKDIR /app
@@ -13,7 +13,7 @@ RUN pip install -r requirements.txt
 COPY app/ ./app/
 
 # Copia o modelo treinado (model.pkl deve estar na raiz do projeto antes do build)
-COPY model.pkl ./app/
+COPY model.pkl ./model.pkl
 
 # Expondo a porta da API
 EXPOSE 8000

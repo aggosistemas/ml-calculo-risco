@@ -16,4 +16,4 @@ class RiscoRequest(BaseModel):
     regra_q01_ativada: bool
     regra_q02_ativada: bool
     regra_q03_ativada: bool
-    decisao_final: Literal["aprovado", "recusado", "encaminhado"]
+    
