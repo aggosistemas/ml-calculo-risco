@@ -6,7 +6,8 @@ try:
     client = TestClient(app)
 except TypeError:
     # Fallback para versões mais antigas
-    client = TestClient(app, base_url="http://testserver")
+    from starlette.testclient import TestClient as StarletteTestClient
+    client = StarletteTestClient(app)
 
 def test_calcular_risco_integration_valido():
     payload = {

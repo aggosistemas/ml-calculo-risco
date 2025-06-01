@@ -22,6 +22,10 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Limpar cache do pip
+        run: |
+            pip cache purge
+
       - name: Instalar dependências
         run: |
             pip install --upgrade pip
