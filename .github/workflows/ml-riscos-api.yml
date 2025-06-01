@@ -16,6 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Limpar cache de Pipi
+        run: |
+          pip cache purge
+
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
