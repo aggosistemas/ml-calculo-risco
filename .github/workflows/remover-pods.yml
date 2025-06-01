@@ -1,0 +1,28 @@
+name: Remover todos os pods
+
+on:
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Autenticar no GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Configurar acesso ao cluster GKE
+        uses: google-github-actions/get-gke-credentials@v1
+        with:
+          cluster_name: cluster-machine-learning
+          location: us-central1
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+      - name: Remover todos os pods
+        run: |
+          kubectl delete pods --all
