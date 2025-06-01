@@ -1,4 +1,4 @@
-name: Pipeline Machine Learning - Calculo de Riscos
+name: CI/CD Pipeline para ML
 
 on:
   push:
@@ -14,20 +14,16 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout do código
+        uses: actions/checkout@v4
 
-      - name: Instalar FastAPI explicitamente
-        run: pip install fastapi==0.110.0
-    
-      - name: Instalar dependências
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
-    
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
+      - name: Instalar FastAPI explicitamente
+        run: pip install fastapi==0.110.0
 
       - name: Instalar dependências
         run: |
@@ -43,7 +39,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout do código
+        uses: actions/checkout@v4
 
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v2
@@ -61,7 +58,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: sonarqube
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout do código
+        uses: actions/checkout@v4
 
       - name: Login no Docker Hub
         uses: docker/login-action@v3
@@ -69,7 +67,7 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
-      - name: Build e Push da imagem
+      - name: Build e Push da imagem Docker
         run: |
           docker build -t $DOCKER_HUB_REPO:latest .
           docker push $DOCKER_HUB_REPO:latest
@@ -78,7 +76,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-push
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout do código
+        uses: actions/checkout@v4
 
       - name: Autenticar no GCP
         uses: google-github-actions/auth@v2
@@ -96,7 +95,7 @@ jobs:
             --zone us-central1 \
             --project ${{ secrets.GCP_PROJECT_ID }}
 
-      - name: Aplicar deploy no GKE
+      - name: Aplicar deployment no GKE
         run: |
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
