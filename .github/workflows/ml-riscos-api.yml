@@ -22,15 +22,11 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Limpar cache do pip
-        run: |
-            pip cache purge
-
       - name: Instalar dependências
         run: |
-            pip install --upgrade pip
-            pip install --upgrade setuptools wheel
-            pip install -r requirements.txt
+          pip install --upgrade pip
+          pip install --upgrade setuptools wheel
+          pip install -r requirements.txt
 
       - name: Rodar testes unitários e de integração
         run: |
@@ -52,6 +48,7 @@ jobs:
             -Dsonar.projectKey=ml-calculo-risco
             -Dsonar.sources=.
             -Dsonar.python.coverage.reportPaths=report.xml
+            -Dsonar.organization=aggosistemas
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
