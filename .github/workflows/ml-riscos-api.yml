@@ -23,7 +23,8 @@ jobs:
           python-version: '3.12'
 
       - name: Instalar FastAPI explicitamente
-        run: pip install fastapi==0.110.0
+        run: | 
+            pip install fastapi==0.110.0
              pip install starlette==0.36.3
 
       - name: Instalar dependências
