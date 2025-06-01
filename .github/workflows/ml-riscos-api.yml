@@ -16,10 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Limpar cache de Pipi
+      - name: Instalar FastAPI explicitamente
+        run: pip install fastapi==0.110.0
+    
+      - name: Instalar dependências
         run: |
-          pip cache purge
-
+        pip install --upgrade pip
+        pip install -r requirements.txt
+    
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
