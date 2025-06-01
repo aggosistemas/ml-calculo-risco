@@ -1,14 +1,14 @@
 from fastapi.testclient import TestClient
 from app.main import app
 
-# Configuração alternativa do cliente
+# Tente esta alternativa no seu teste:
 try:
+    from fastapi.testclient import TestClient
     client = TestClient(app)
 except TypeError:
-    # Fallback para versões mais antigas
     from starlette.testclient import TestClient as StarletteTestClient
-    client = StarletteTestClient(app)
-
+    client = StarletteTestClient(app, base_url="http://testserver")
+    
 def test_calcular_risco_integration_valido():
     payload = {
         "idade": 30,
